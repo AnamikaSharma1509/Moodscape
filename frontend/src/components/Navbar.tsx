@@ -215,12 +215,12 @@ export const Navbar: React.FC = () => {
 
             {/* Notification Dropdown Panel */}
             {notificationsOpen && (
-              <div className="absolute right-0 mt-3 w-80 sm:w-96 rounded-2xl glass-card border border-slate-200 dark:border-white/10 shadow-2xl p-4 space-y-3 z-50 animate-in zoom-in-95 duration-150">
-                <div className="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-white/10">
+              <div className="absolute right-0 mt-3 w-80 sm:w-96 rounded-2xl bg-white dark:bg-[#121622] border border-slate-200 dark:border-slate-700 shadow-2xl shadow-slate-900/20 dark:shadow-black/80 p-4 space-y-3 z-50 animate-in zoom-in-95 duration-150">
+                <div className="flex items-center justify-between pb-2 border-b border-slate-200 dark:border-slate-700/80">
                   <div className="flex items-center gap-2">
                     <span className="font-bold text-sm text-slate-900 dark:text-white">Notifications</span>
                     {unreadCount > 0 && (
-                      <span className="px-2 py-0.5 rounded-full bg-purple-500/20 text-purple-400 font-bold text-[10px]">
+                      <span className="px-2 py-0.5 rounded-full bg-purple-100 dark:bg-purple-900/50 text-purple-700 dark:text-purple-300 font-bold text-[10px]">
                         {unreadCount} new
                       </span>
                     )}
@@ -237,10 +237,10 @@ export const Navbar: React.FC = () => {
 
                 <div className="max-h-80 overflow-y-auto space-y-2.5">
                   {notifications.length === 0 ? (
-                    <div className="py-8 text-center text-xs text-slate-400 space-y-1">
-                      <Clock className="w-6 h-6 mx-auto text-slate-300 dark:text-slate-600" />
-                      <p>No notifications yet</p>
-                      <p className="text-[10px] text-slate-500">Activity and room requests will appear here</p>
+                    <div className="py-8 text-center text-xs text-slate-500 dark:text-slate-400 space-y-1">
+                      <Clock className="w-6 h-6 mx-auto text-slate-400 dark:text-slate-500" />
+                      <p className="font-medium">No notifications yet</p>
+                      <p className="text-[10px] text-slate-400 dark:text-slate-500">Activity and room requests will appear here</p>
                     </div>
                   ) : (
                     notifications.map((notif) => (
@@ -248,21 +248,21 @@ export const Navbar: React.FC = () => {
                         key={notif.id}
                         className={`p-3 rounded-xl border transition-colors space-y-2 ${
                           notif.is_read
-                            ? 'bg-slate-50/50 dark:bg-white/5 border-slate-200 dark:border-white/5 text-slate-600 dark:text-slate-300'
-                            : 'bg-purple-500/10 border-purple-500/30 text-slate-900 dark:text-white shadow-sm'
+                            ? 'bg-slate-50 dark:bg-[#1a1f30] border-slate-200 dark:border-slate-700/70 text-slate-700 dark:text-slate-200'
+                            : 'bg-purple-50 dark:bg-purple-950/60 border-purple-200 dark:border-purple-600/50 text-slate-900 dark:text-white shadow-sm'
                         }`}
                       >
                         <div className="flex items-start justify-between gap-2">
                           <div>
                             <h4 className="font-bold text-xs">{notif.title}</h4>
-                            <p className="text-[11px] text-slate-500 dark:text-slate-400 mt-0.5 leading-snug">
+                            <p className="text-[11px] text-slate-600 dark:text-slate-300 mt-0.5 leading-snug">
                               {notif.message}
                             </p>
                           </div>
                           {!notif.is_read && (
                             <button
                               onClick={() => markAsRead(notif.id)}
-                              className="text-[10px] text-purple-400 hover:text-purple-300 flex-shrink-0 cursor-pointer"
+                              className="text-[10px] text-purple-600 dark:text-purple-400 hover:text-purple-500 dark:hover:text-purple-300 flex-shrink-0 cursor-pointer"
                               title="Mark read"
                             >
                               <Check className="w-3.5 h-3.5" />
@@ -348,22 +348,22 @@ export const Navbar: React.FC = () => {
             )}
 
             {userDropdownOpen && (
-              <div className="absolute right-0 mt-3 w-64 rounded-2xl glass-card border border-slate-200 dark:border-white/10 shadow-2xl p-2.5 space-y-1.5 z-50 animate-in zoom-in-95 duration-150">
+              <div className="absolute right-0 mt-3 w-64 rounded-2xl bg-white dark:bg-[#121622] border border-slate-200 dark:border-slate-700 shadow-2xl shadow-slate-900/20 dark:shadow-black/80 p-2.5 space-y-1.5 z-50 animate-in zoom-in-95 duration-150">
                 {/* User Header Info */}
                 {currentUser ? (
-                  <div className="px-3 py-2.5 rounded-xl bg-purple-500/5 dark:bg-white/5 border border-purple-500/10 mb-1">
+                  <div className="px-3 py-2.5 rounded-xl bg-purple-50 dark:bg-[#1a1f30] border border-purple-200 dark:border-purple-600/30 mb-1">
                     <p className="font-bold text-xs text-slate-900 dark:text-white truncate">
                       {currentUser.display_name}
                     </p>
-                    <p className="text-[11px] text-slate-400 truncate">{currentUser.email}</p>
-                    <span className="inline-block mt-1 text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-500/10 text-emerald-500 border border-emerald-500/20">
+                    <p className="text-[11px] text-slate-500 dark:text-slate-400 truncate">{currentUser.email}</p>
+                    <span className="inline-block mt-1 text-[9px] font-bold px-2 py-0.5 rounded-full bg-emerald-100 dark:bg-emerald-950/60 text-emerald-700 dark:text-emerald-300 border border-emerald-300 dark:border-emerald-700/50">
                       {currentUser.is_verified ? '✓ Verified Member' : 'Registered Member'}
                     </span>
                   </div>
                 ) : (
-                  <div className="px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-white/5 border border-slate-200 dark:border-white/10 mb-1">
+                  <div className="px-3 py-2.5 rounded-xl bg-slate-100 dark:bg-[#1a1f30] border border-slate-200 dark:border-slate-700 mb-1">
                     <p className="font-bold text-xs text-slate-900 dark:text-white">Guest Explorer</p>
-                    <p className="text-[10px] text-slate-400">Sign in to save movies & sync rooms</p>
+                    <p className="text-[10px] text-slate-500 dark:text-slate-400">Sign in to save movies & sync rooms</p>
                     <div className="flex gap-2 pt-2">
                       <Link
                         to="/login"
@@ -375,7 +375,7 @@ export const Navbar: React.FC = () => {
                       <Link
                         to="/register"
                         onClick={() => setUserDropdownOpen(false)}
-                        className="flex-1 py-1.5 rounded-lg border border-purple-500/30 text-purple-600 dark:text-purple-300 hover:bg-purple-500/10 font-bold text-[11px] text-center"
+                        className="flex-1 py-1.5 rounded-lg border border-purple-300 dark:border-purple-500/40 text-purple-600 dark:text-purple-300 hover:bg-purple-50 dark:hover:bg-purple-950/40 font-bold text-[11px] text-center"
                       >
                         Register
                       </Link>
@@ -389,28 +389,28 @@ export const Navbar: React.FC = () => {
                     <Link
                       to="/profile"
                       onClick={() => setUserDropdownOpen(false)}
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-purple-500/10 transition-colors"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#1a1f30] transition-colors"
                     >
-                      <UserIcon className="w-4 h-4 text-purple-400" />
+                      <UserIcon className="w-4 h-4 text-purple-500 dark:text-purple-400" />
                       <span>My Profile</span>
                     </Link>
                     <Link
                       to="/settings"
                       onClick={() => setUserDropdownOpen(false)}
-                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-purple-500/10 transition-colors"
+                      className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#1a1f30] transition-colors"
                     >
-                      <Settings className="w-4 h-4 text-purple-400" />
+                      <Settings className="w-4 h-4 text-purple-500 dark:text-purple-400" />
                       <span>Account Settings</span>
                     </Link>
                   </div>
                 )}
 
                 {/* All Menu & Feature Options (Consolidated into Profile Dropdown) */}
-                <div className="pt-1 border-t border-slate-200 dark:border-white/10 space-y-0.5">
+                <div className="pt-1 border-t border-slate-200 dark:border-slate-700/80 space-y-0.5">
                   <Link
                     to="/favorites"
                     onClick={() => setUserDropdownOpen(false)}
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-purple-500/10 transition-colors"
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#1a1f30] transition-colors"
                   >
                     <Heart className="w-4 h-4 text-rose-500" />
                     <span>Saved Movies</span>
@@ -419,55 +419,55 @@ export const Navbar: React.FC = () => {
                   <Link
                     to="/quiz"
                     onClick={() => setUserDropdownOpen(false)}
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-purple-500/10 transition-colors"
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#1a1f30] transition-colors"
                   >
-                    <Sparkles className="w-4 h-4 text-purple-400" />
+                    <Sparkles className="w-4 h-4 text-purple-500 dark:text-purple-400" />
                     <span>Solo Mood Quiz</span>
                   </Link>
 
                   <Link
                     to="/rooms"
                     onClick={() => setUserDropdownOpen(false)}
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-purple-500/10 transition-colors"
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#1a1f30] transition-colors"
                   >
-                    <Users className="w-4 h-4 text-pink-400" />
+                    <Users className="w-4 h-4 text-pink-500 dark:text-pink-400" />
                     <span>Group Movie Night</span>
                   </Link>
 
                   <Link
                     to="/rooms/create"
                     onClick={() => setUserDropdownOpen(false)}
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-purple-500/10 transition-colors"
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#1a1f30] transition-colors"
                   >
-                    <Plus className="w-4 h-4 text-emerald-400" />
+                    <Plus className="w-4 h-4 text-emerald-500 dark:text-emerald-400" />
                     <span>Create a Room</span>
                   </Link>
 
                   <Link
                     to="/search"
                     onClick={() => setUserDropdownOpen(false)}
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-purple-500/10 transition-colors"
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#1a1f30] transition-colors"
                   >
-                    <Compass className="w-4 h-4 text-blue-400" />
+                    <Compass className="w-4 h-4 text-blue-500 dark:text-blue-400" />
                     <span>Discover Movies</span>
                   </Link>
 
                   <Link
                     to="/how-it-works"
                     onClick={() => setUserDropdownOpen(false)}
-                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-purple-500/10 transition-colors"
+                    className="flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#1a1f30] transition-colors"
                   >
-                    <HelpCircle className="w-4 h-4 text-amber-400" />
+                    <HelpCircle className="w-4 h-4 text-amber-500 dark:text-amber-400" />
                     <span>How It Works</span>
                   </Link>
                 </div>
 
                 {/* Appearance Theme Switcher inside Dropdown */}
-                <div className="pt-1 border-t border-slate-200 dark:border-white/10">
+                <div className="pt-1 border-t border-slate-200 dark:border-slate-700/80">
                   <button
                     type="button"
                     onClick={toggleTheme}
-                    className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-white/5 transition-colors cursor-pointer"
+                    className="w-full flex items-center justify-between px-3 py-2 rounded-xl text-xs font-semibold text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-[#1a1f30] transition-colors cursor-pointer"
                   >
                     <span className="flex items-center gap-2.5">
                       {theme === 'dark' ? <Moon className="w-4 h-4 text-purple-400" /> : <Sun className="w-4 h-4 text-amber-500" />}
@@ -481,10 +481,10 @@ export const Navbar: React.FC = () => {
 
                 {/* Sign Out Option */}
                 {currentUser && (
-                  <div className="pt-1 border-t border-slate-200 dark:border-white/10">
+                  <div className="pt-1 border-t border-slate-200 dark:border-slate-700/80">
                     <button
                       onClick={handleSignOut}
-                      className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-rose-500 hover:bg-rose-500/10 transition-colors text-left cursor-pointer"
+                      className="w-full flex items-center gap-2.5 px-3 py-2 rounded-xl text-xs font-semibold text-rose-500 hover:bg-rose-50 dark:hover:bg-rose-950/30 transition-colors text-left cursor-pointer"
                     >
                       <LogOut className="w-4 h-4" />
                       <span>Sign Out</span>
@@ -543,7 +543,7 @@ export const Navbar: React.FC = () => {
           <div className="flex-1 px-5 py-6 space-y-6 max-w-lg mx-auto w-full">
             {/* User Account / Profile Card */}
             {currentUser ? (
-              <div className="p-4 rounded-2xl glass-card border border-purple-500/20 shadow-md flex items-center justify-between gap-3">
+              <div className="p-4 rounded-2xl bg-slate-50 dark:bg-[#121622] border border-purple-500/20 shadow-md flex items-center justify-between gap-3">
                 <div className="flex items-center gap-3 min-w-0">
                   <span className="text-3xl">{userAvatar}</span>
                   <div className="min-w-0">
